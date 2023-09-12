@@ -1,0 +1,267 @@
+Python Test Series 1:
+
+1: What happens if you enter "abc" as input? 
+Ans: A) "Invalid Input"
+
+2:What is the output if you enter "-3" as input?
+Ans: A) "Error: Not a positive integer"
+
+3: What is the output if you enter "0" as input?
+Ans: A) "Result: Infinity"
+
+4: What is the output of the following code?
+Ans: B) [1, 4, 9, 16, 25] 
+
+5: What is the output of the following code?
+Ans: A) 2 
+
+6: What is the output of this code?
+Ans: A) {1, 2, 3, 5, 6, 7, 9, 10} 
+
+7: What is the output of this code?
+Ans: B) 20 
+
+8: What is the output of this code?
+Ans: A) "!dlroW ,olleH" 
+
+9: What is the output of this code? 
+Ans: B) 3 
+
+10: What is the output of this code? 
+Ans: D) ValueError
+
+11: What is the output of this code? 
+Ans: B) 15 
+
+12: What is the output of this code? 
+Ans: B) TypeError 
+
+13: What is the output of this code? 
+Ans: A) 5.0 Done 
+
+14:What is the value of y printed by this code? 
+Ans: B) 5
+
+15: What is the output of this code? 
+Ans: A) [1, 2, 3, 4]
+
+16: What is the output of this code? 
+Ans: B) [2, 4]
+
+17: What is the output of this code? 
+Ans: A) Hello Alice
+
+18:What is the output of this code? 
+Ans: B) 11
+
+19: What is the output of this code? 
+Ans: C) 120
+
+20: What is the output of this code? 
+Ans: B) 3
+
+21: What is the output of this code? 
+Ans: A) True 
+
+22: What is the output of this code? 
+Ans: B) "HELLO, ALICE" 
+
+23:What is the output of this code? 
+Ans: A) "Time taken: 2.0 seconds" 
+
+24:What is the output of this code? 
+Ans: A) "Arguments: 3, 4, Result: 7"
+
+25: What is the value of result? 
+Ans: C) 89 
+
+26: What is the output of this code? 
+Ans: A) "Admin panel accessed." 
+
+27: What is the output of this code? 
+Ans: D) "Max attempts reached"
+
+++++++++++++ Programing Que: +++++++++++++++++
+Que 1: Problem Statement: Employee Performance Evaluation
+Ans:
+def calculate_performance_scores(employees):
+    result = []
+
+    for employee in employees:
+        name = employee['name']  # return the name
+        scores = employee['scores']
+        weights = employee['weights']
+
+        # Calculate the weighted sum of scores for each criterion
+        weighted_sum = sum(scores[criterion] * weights[criterion] for criterion in scores)
+
+        # Create a dictionary for the employee's performance
+        performance = {
+            'name': name,
+            'performance_score': weighted_sum
+        }
+
+        result.append(performance)
+
+    return result
+	
+Que2 : Problem Statement: Students Report
+Ans:
+def calculate_final_grades(N, M, marks):
+    # Calculate the average marks for each subject
+    subject_averages = [sum(marks[i][j] for i in range(N)) / N for j in range(M)]
+
+    # Find the subject with the lowest average
+    lowest_avg_subject = min(enumerate(subject_averages), key=lambda x: x[1])[0]
+
+    # Calculate final grades for each student
+    final_grades = []
+    for i in range(N):
+        total_marks = sum(marks[i])
+        adjusted_total = total_marks - marks[i][lowest_avg_subject]
+        final_grades.append(adjusted_total)
+
+    return final_grades
+	
+Que 3: Problem Statement: Sorting Employee Records
+Ans:
+def sort_employees_by_id(employees):
+    # Sort employees by 'id' in ascending order
+    sorted_employees = sorted(employees, key=lambda x: x['id'])
+    return sorted_employees
+
+def sort_employees_by_salary(employees):
+    # Sort employees by 'salary' in descending order
+    sorted_employees = sorted(employees, key=lambda x: x['salary'], reverse=True)
+    return sorted_employees
+	
+Que 5: Circular Picnic Game
+Ans:
+def max_circular_sum(n, numbers):
+    # Function to find the maximum subarray sum using Kadane's algorithm
+    def kadane(arr):
+        max_sum = float('-inf')
+        current_sum = 0
+
+        for num in arr:
+            current_sum = max(num, current_sum + num)
+            max_sum = max(max_sum, current_sum)
+
+        return max_sum
+
+    # Find the maximum subarray sum without considering the circular aspect
+    max_sum_linear = kadane(numbers)
+
+    # Find the total sum of the array
+    total_sum = sum(numbers)
+
+    # Negate each number and find the maximum subarray sum (inverted)
+    inverted_numbers = [-num for num in numbers]
+    max_sum_inverted = kadane(inverted_numbers)
+
+    # Calculate the maximum circular sum
+    max_circular = total_sum + max_sum_inverted
+
+    # Return the maximum of the linear and circular sums
+    return max(max_sum_linear, max_circular)
+	
+Que6 : Maximum Subarray Sum
+Ans:
+def max_subarray_sum(arr, n):
+    max_ending_here = max_so_far = arr[0]  # Initialize variables
+
+    for i in range(1, n):
+        max_ending_here = max(arr[i], max_ending_here + arr[i])
+        max_so_far = max(max_so_far, max_ending_here)
+
+    return max_so_far
+	
+Que7 : Longest Common Subsequence
+def longest_common_subsequence(s1, s2):
+    m = len(s1)
+    n = len(s2)
+
+    # Create a 2D DP table to store the lengths of LCS
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    # Fill the DP table bottom-up
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if s1[i - 1] == s2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+    # The value in the bottom-right cell of the DP table is the length of LCS
+    return dp[m][n]
+	
+Que8 : Matrix Spiral Order
+Ans:
+def spiral_order(matrix):
+    if not matrix:
+        return []
+
+    result = []
+    top, bottom, left, right = 0, len(matrix) - 1, 0, len(matrix[0]) - 1
+
+    while top <= bottom and left <= right:
+        # Traverse top row
+        for j in range(left, right + 1):
+            result.append(matrix[top][j])
+        top += 1
+
+        # Traverse rightmost column
+        for i in range(top, bottom + 1):
+            result.append(matrix[i][right])
+        right -= 1
+
+        # Check if there are more rows or columns to traverse
+        if top <= bottom:
+            # Traverse bottom row
+            for j in range(right, left - 1, -1):
+                result.append(matrix[bottom][j])
+            bottom -= 1
+
+        if left <= right:
+            # Traverse leftmost column
+            for i in range(bottom, top - 1, -1):
+                result.append(matrix[i][left])
+            left += 1
+
+    return result
+	
+Que9: Sudoku Solver
+Ans:
+def solve_sudoku(board):
+    def is_valid_move(row, col, num):
+        # Check row
+        if num in board[row]:
+            return False
+
+        # Check column
+        if num in [board[i][col] for i in range(9)]:
+            return False
+
+        # Check 3x3 subgrid
+        subgrid_row, subgrid_col = row // 3 * 3, col // 3 * 3
+        for i in range(subgrid_row, subgrid_row + 3):
+            for j in range(subgrid_col, subgrid_col + 3):
+                if board[i][j] == num:
+                    return False
+
+        return True
+
+    def solve():
+        for row in range(9):
+            for col in range(9):
+                if board[row][col] == 0:
+                    for num in range(1, 10):
+                        if is_valid_move(row, col, num):
+                            board[row][col] = num
+                            if solve():
+                                return True
+                            board[row][col] = 0
+                    return False
+        return True
+
+    solve()
